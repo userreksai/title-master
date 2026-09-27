@@ -7,9 +7,9 @@ Wants=network-online.target
 Type=simple
 User=title-master
 Group=title-master
-WorkingDirectory=/user/local/title_master
-ExecStartPre=/user/local/title_master/title-master -config /user/local/title_master/master.json -check-config
-ExecStart=/user/local/title_master/title-master -config /user/local/title_master/master.json
+WorkingDirectory=/usr/local/title_master
+ExecStartPre=/usr/local/title_master/title-master -config /usr/local/title_master/master.json -check-config
+ExecStart=/usr/local/title_master/title-master -config /usr/local/title_master/master.json
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=30
@@ -17,7 +17,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/user/local/title_master/data
+ReadWritePaths=/usr/local/title_master/data
 UMask=0077
 
 [Install]

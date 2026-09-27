@@ -4,18 +4,18 @@ Go 编写的域名标题监控主控。读取现有 SEO 后端 `/api/v1/domains`
 
 ## 服务器部署
 
-要求 Linux、运行中的 systemd、Git、Go 1.23+、基本 coreutils；下载脚本需要 curl。以 root 执行部署脚本。默认路径为 **`/user/local/title_master`**。
+要求 Linux、运行中的 systemd、Git、Go 1.23+、基本 coreutils；下载脚本需要 curl。以 root 执行部署脚本。默认路径为 **`/usr/local/title_master`**。
 
 ```sh
-mkdir -p /user/local/title_master
-cd /user/local/title_master
+mkdir -p /usr/local/title_master
+cd /usr/local/title_master
 curl -fsSL https://raw.githubusercontent.com/userreksai/title-master/main/deploy.sh -o deploy.sh
 sh deploy.sh
 ```
 
 首次执行会下载默认分支最新代码、编译 `title-master`，生成 `master.json`，创建服务用户 `title-master` 和 `/etc/systemd/system/title-master.service`。默认配置含占位 token，首次只安装，不启动未配置的服务。
 
-编辑 `/user/local/title_master/master.json`：
+编辑 `/usr/local/title_master/master.json`：
 
 - `seo.base_url`：现有 SEO 后端地址，默认 `http://127.0.0.1:10001`。
 - `seo.token`：SEO 服务的 `API_TOKEN`，无鉴权才留空。
@@ -27,7 +27,7 @@ sh deploy.sh
 完成配置后再次执行：
 
 ```sh
-cd /user/local/title_master
+cd /usr/local/title_master
 sh deploy.sh
 systemctl status title-master --no-pager
 journalctl -u title-master -f
@@ -38,7 +38,7 @@ journalctl -u title-master -f
 ## 更新
 
 ```sh
-cd /user/local/title_master
+cd /usr/local/title_master
 curl -fsSL https://raw.githubusercontent.com/userreksai/title-master/main/deploy.sh -o deploy.sh
 sh deploy.sh
 ```
@@ -62,7 +62,7 @@ sh deploy.sh
 
 每台 agent 检测全部 500 域名，三台并行。每台 20 并发、每域名耗时 15 秒时，抓取预算约 375 秒；这是估算，部署后观察实际轮次日志。超长轮次跳过错过的周期，不叠加任务。
 
-安装到其他目录时使用 `INSTALL_DIR=/usr/local/title_master sh deploy.sh`，之后更新保持相同变量。`state_file` 可使用独立的持久数据目录，脚本会为该目录配置服务用户及写权限，不要填写共享系统目录。目录名支持英文字母、数字、`_`、`-`、`.`、`/`。`TITLE_MASTER_REF=分支名 sh deploy.sh` 可以指定分支。
+安装到其他目录时使用 `INSTALL_DIR=/opt/title_master sh deploy.sh`，之后更新保持相同变量。`state_file` 可使用独立的持久数据目录，脚本会为该目录配置服务用户及写权限，不要填写共享系统目录。目录名支持英文字母、数字、`_`、`-`、`.`、`/`。`TITLE_MASTER_REF=分支名 sh deploy.sh` 可以指定分支。
 
 ## 判定与通知
 

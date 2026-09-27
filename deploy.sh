@@ -20,7 +20,7 @@ safe_path() {
 for command in git go systemctl install mktemp getent useradd cp mv readlink; do require "$command"; done
 systemctl show-environment >/dev/null || fail 'systemd is not running.'
 
-INSTALL_DIR=${INSTALL_DIR:-/user/local/title_master}
+INSTALL_DIR=${INSTALL_DIR:-/usr/local/title_master}
 REPO_URL=${TITLE_MASTER_REPO_URL:-https://github.com/userreksai/title-master.git}
 REF=${TITLE_MASTER_REF:-}
 SERVICE_USER=title-master
