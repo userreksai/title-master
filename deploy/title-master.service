@@ -1,0 +1,24 @@
+[Unit]
+Description=SEO Title Master
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=title-master
+Group=title-master
+WorkingDirectory=/user/local/title_master
+ExecStartPre=/user/local/title_master/title-master -config /user/local/title_master/master.json -check-config
+ExecStart=/user/local/title_master/title-master -config /user/local/title_master/master.json
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/user/local/title_master/data
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

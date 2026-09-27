@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "base_url": "http://127.0.0.1:10001",
+    "token": "",
+    "timeout_seconds": 15
+  },
+  "agents": [
+    {"name": "agent-1", "url": "http://10.0.0.11:8003", "token": "CHANGE_ME_AGENT_1_RANDOM_TOKEN"},
+    {"name": "agent-2", "url": "http://10.0.0.12:8003", "token": "CHANGE_ME_AGENT_2_RANDOM_TOKEN"},
+    {"name": "agent-3", "url": "http://10.0.0.13:8003", "token": "CHANGE_ME_AGENT_3_RANDOM_TOKEN"}
+  ],
+  "interval_seconds": 600,
+  "per_agent_concurrency": 20,
+  "title_timeout_seconds": 15,
+  "rpc_timeout_seconds": 20,
+  "health_timeout_seconds": 5,
+  "health_interval_seconds": 30,
+  "failure_percent": 100,
+  "min_healthy_agents": 1,
+  "alert_on_initial_failure": true,
+  "state_file": "data/state.json",
+  "webhooks": {
+    "format": "feishu",
+    "domain_urls": [],
+    "machine_urls": [],
+    "timeout_seconds": 10,
+    "retry_interval_seconds": 30,
+    "workers": 2
+  }
+}

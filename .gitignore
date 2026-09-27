@@ -1,0 +1,11 @@
+/bin/
+/data/
+/master.json
+/title-master
+/title-master.exe
+/title-master.previous
+/title-master.version
+/.deploy.*/
+/.title-agent-build.*/
+/.title-master.next
+*.log
